@@ -1,0 +1,105 @@
+{% extends  "base.html" %}
+{% block content %}
+ <header id="header">
+      <!-- BEGIN MENU -->
+      <div class="menu_area">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <!-- LOGO -->
+              <!-- TEXT BASED LOGO -->
+              <a class="navbar-brand" href="index.html"><i class="fa fa-heartbeat"></i> <span>&nbsp; MIDHILL HOSPITAL</span></a>
+              <!-- IMG BASED LOGO  -->
+              <!--  <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo"></a>   -->
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
+                <li class="active"><a href="/">&nbsp;Home</a></li>
+                <li><a href='{% url "features"  %}'>&nbsp;Features</a></li>
+                <li><a href="healthnetapp/about-us/">&nbsp;About Us</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Service <span class="fa fa-angle-down"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href='{% url "medicalcounseling"  %}'>&nbsp;Medical Counseling</a></li>
+                    <li><a href="healthnetapp/medical-research/">&nbsp;Medical Research</a></li>
+                    <li><a href="healthnetapp/blood-bank/">&nbsp;Blood Bank</a></li>
+                  </ul>
+                </li>
+                <li><a href="healthnetapp/gallery/">&nbsp;Gallery</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">&nbsp;News <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="healthnetapp/blog-archive/">&nbsp;Blog Archive</a></li>
+                    <li><a href="healthnetapp/blog-archive-with-left-sidebar/">&nbsp;Blog Archive with Left Sidebar</a></li>
+                    <li><a href="healthnetapp/healthnetapp/blog-archive-with-right-sidebar/">&nbsp;Blog Archive with Right Sidebar</a></li>
+                    <li><a href="healthnetapp/blog-single/">&nbsp;Blog Single</a></li>
+                    <li><a href="healthnetapp/blog-single-with-left-sidebar/">&nbsp;Blog Single with Left Sidebar</a></li>
+                    <li><a href="healthnetapp/blog-single-with-right-sidebar/">&nbsp;Blog Single with Right Sidebar</a></li>
+                  </ul>
+                </li>
+                <li><a href="healthnetapp/contact.html">&nbsp;Contact</a></li>
+                <li>
+                  <div class="btn-group">
+                                            {% if user.is_authenticated %}
+                  <form action="/healthnetapp/logout/"><button type="submit" value="Logout" class="btn btn-success"><i class="icon-signin icon-large"></i>&nbsp;Logout</button></form>
+                                            {% else %}
+                  <button class="btn btn-success"><i class="icon-signin icon-large"></i>&nbsp;login</button><button class="btn dropdown-toggle" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/healthnetapp/login/patient/" role="button"  data-toggle="modal"><i class="icon-user icon-large"></i>&nbsp;Patient</a></li>
+                                            <li><a href="/healthnetapp/login/staff/" role="button"  data-toggle="modal"><i class="icon-user-md icon-large"></i>&nbsp; Staff</a></li>
+											<li><a href="/healthnetapp/register/" role="button"  data-toggle="modal"><i class="icon-user-md icon-large"></i>&nbsp;Register</a></li>
+
+                                        </ul>
+
+                                             {% endif %}
+
+
+                  </div>
+                </li>
+               </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </nav>
+      </div>
+      <!-- END MENU -->
+    </header>
+
+
+		<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <h1 class="text-center login-title">Sign in</h1>
+            <div class="account-wall">
+                <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                    alt="">
+                <form   id="login_form" class="form-signin"  method="post" action="/healthnetapp/login/{{type}}/">
+					{% csrf_token %}
+               	Username <input type="text" class="form-control" name="username"  placeholder="username" required autofocus>
+				Password <input type="password" class="form-control" name="password" placeholder="Password" required>
+                	     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <label class="checkbox pull-left">
+                    <input type="checkbox" value="remember-me">
+                    Remember me
+                </label>
+                <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                </form>
+            </div>
+            <a href="#" class="text-center new-account">Create an account </a>
+        </div>
+    </div>
+</div>
+
+
+
+
+    {% endblock %}

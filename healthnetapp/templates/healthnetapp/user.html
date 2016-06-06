@@ -1,0 +1,438 @@
+{% extends  "base.html" %}
+{% block content %}
+      <!-- BEGIN MENU -->
+ <header class="header dark-bg">
+      <!-- BEGIN MENU -->
+      <div class="menu_area">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <!-- LOGO -->
+              <!-- TEXT BASED LOGO -->
+              <a class="navbar-brand" href="index.html"><i class="fa fa-heartbeat"></i> <span>MIDHILL HOSPITAL</span></a>
+              <!-- IMG BASED LOGO  -->
+              <!--  <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo"></a>   -->
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
+				  {% if user.is_authenticated %}
+		{% if type == "admin" %}
+<div class="btn-group">
+
+
+    <table style="float:right">
+        <li>
+                <td style=text-align:center><form action="/"><button class="btn btn-primary" type="submit" value="Home">&nbsp;Home</button></form></td>
+                <td style=text-align:center><form action="/healthnetapp/logs_list/"><button class="btn btn-primary" type="submit" value="View Logs">View Logs</button></form></td>
+                <td style=text-align:center><form action="/healthnetapp/statistics/"><button class="btn btn-primary" type="submit" value="statistics">Statistics</button></form></td>
+                <td style=text-align:center><form action="/admin/"><button class="btn btn-primary" type="submit" value="Admin Page">Admin Page</button></form></td>
+                <td style=text-align:center><form action="/healthnetapp/pending_list/"><button class="btn btn-primary" type="submit" value="Pending Appointments">Pending Appts.</button></form></td>
+		        <td><form action="/healthnetapp/logout/"><button class="btn btn-primary" type="submit" value="Logout" class="btn btn-success"><i class="icon-signin icon-large"></i>&nbsp;Logout</button></form></td>
+        </li>
+    </table>
+
+					{% elif type == "doctor" %}
+
+	<table style="float:right">
+        <li>
+				<td style=text-align:center><form action="/"><button class="btn btn-primary" type="submit" value="Home">&nbsp;Home</button></form></td>
+				 <td style=text-align:center><form action="/healthnetapp/update_doctor/{{user.username}}"><button class="btn btn-primary" type="submit" value="Update Info">Update Info</button></form></td>
+				<td style=text-align:center;><form action="/healthnetapp/calendar/"><button class="btn btn-primary" type="submit" value="Calendar">Calendar</button></form></td>
+				<td style=text-align:center;><form action="/healthnetapp/patient_list/"><button class="btn btn-primary" type="submit" value="Patient List">Patient List</button></form></td>
+				<td style=text-align:center;><form action="/healthnetapp/doctor_list/"><button class="btn btn-primary" type="submit" value="Doctor List">Doctor List</button></form></td>
+				<td style=text-align:center;><form action="/healthnetapp/nurse_list/"><button class="btn btn-primary" type="submit" value="Nurse List">Nurse List</button></form></td>
+			 	<td style=text-align:center><form action="/healthnetapp/manager_list/"><button class="btn btn-primary" type="submit" value="Manager List">Manager List</button></form></td><
+				<td style=text-align:center><form action="/healthnetapp/secretary_list/"><button class="btn btn-primary" type="submit" value="Secretary List">Secretary List</button></form></td>
+				<td style=text-align:center><form action="/healthnetapp/admin_list/"><button class="btn btn-primary" type="submit" value="Admin List">Admin List</button></form></td>
+		        <td><form action="/healthnetapp/logout/"><button class="btn btn-primary" type="submit" value="Logout" class="btn btn-success"><i class="icon-signin icon-large"></i>&nbsp;Logout</button></form></td>
+
+	    </li>
+    </table>
+
+				  {% elif type == "nurse" %}
+	<table>
+        <li>
+				<td style=text-align:center><form action="/"><button type="submit" value="Home">&nbsp;Home</button></form></td>
+				<td style=text-align:center><form action="/healthnetapp/update_nurse/{{user.username}}"><button type="submit" value="Update Info">Update Info</button></form></td>
+				<td style=text-align:center;><form action="/healthnetapp/calendar/"><button type="submit" value="Calendar">Calendar</button></form></td><
+				<td style=text-align:center;><form action="/healthnetapp/patient_list/"><button type="submit" value="Patient List">Patient List</button></form></td>
+				<td style=text-align:center;><form action="/healthnetapp/doctor_list/"><button type="submit" value="Doctor List">Doctor List</button></form></td>
+				<td style=text-align:center;><form action="/healthnetapp/nurse_list/"><button type="submit" value="Nurse List">Nurse List</button></form></td>
+				<td style=text-align:center><form action="/healthnetapp/manager_list/"><button type="submit" value="Manager List">Manager List</button></form></td>
+				<td style=text-align:center><form action="/healthnetapp/secretary_list/"><button type="submit" value="Secretary List">Secretary List</button></form></td>
+				<td style=text-align:center><form action="/healthnetapp/admin_list/"><button type="submit" value="Admin List">Admin List</button></form></td>
+		        <td><form action="/healthnetapp/logout/"><button type="submit" value="Logout" class="btn btn-success"><i class="icon-signin icon-large"></i>&nbsp;Logout</button></form><</td>
+        </li>
+    </table>
+
+				  {% elif type == "manager" %}
+		<li><table>
+				<td style=text-align:center><form action="/"><button type="submit" value="Home">&nbsp;Home</button></form></td>
+			<td style=text-align:center><form action="/healthnetapp/update_manager/{{user.username}}"><button type="submit" value="Update Info">Update Info</button></form></td>
+			<td style=text-align:center;><form action="/healthnetapp/calendar/"><button type="submit" value="Calendar">Calendar</button></form></td><li>
+			<td style=text-align:center;><form action="/healthnetapp/patient_list/"><button type="submit" value="Patient List">Patient List</button></form></td>
+			<td style=text-align:center;><form action="/healthnetapp/doctor_list/"><button type="submit" value="Doctor List">Doctor List</button></form></td>
+			<td style=text-align:center;><form action="/healthnetapp/nurse_list/"><button type="submit" value="Nurse List">Nurse List</button></form></td>
+			<td style=text-align:center><form action="/healthnetapp/manager_list/"><button type="submit" value="Manager List">Manager</button></form></td><li>
+			<td style=text-align:center><form action="/healthnetapp/secretary_list/">
+				<button type="submit" value="Secretary List">Secretary List</button>
+			</form></td>
+			<td style=text-align:center><form action="/healthnetapp/admin_list/">
+				<button type="submit" value="Admin List">Admin List</button>
+			</form></td>
+			<td style=text-align:center><form action="/healthnetapp/pending_list/">
+				<button type="submit" value="Pending Appointments">Pending Appointments</button>
+			</form></td>
+			<td><form action="/healthnetapp/logout/"><button type="submit" value="Logout" class="btn btn-success"><i class="icon-signin icon-large"></i>&nbsp;Logout</button></form></td>
+</table>
+	</li>
+		{% elif type == "secretary" %}
+	<li><table>
+				  <li><td style=text-align:center><form action="/"><button type="submit" value="Home">&nbsp;Home</button></form></td></li>
+			<li><td style=text-align:center><form action="/healthnetapp/update_secretary/{{user.username}}">
+				<button type="submit" value="Update Info">Update Info</button>
+			</form></td><li>
+			<li><td style=text-align:center;><form action="/healthnetapp/calendar/">
+				<button type="submit" value="Calendar">Calendar</button>
+			</form></td><li>
+			<li><td style=text-align:center;><form action="/healthnetapp/patient_list/">
+				<button type="submit" value="Patient List">Patient List</button>
+			</form></td><li>
+			<li><td style=text-align:center;><form action="/healthnetapp/doctor_list/">
+				<button type="submit" value="Doctor List">Doctor List</button>
+			</form></td><li>
+			<li><td style=text-align:center;><form action="/healthnetapp/nurse_list/">
+				<button type="submit" value="Nurse List">Nurse List</button>
+			</form></td><li>
+			<li><td style=text-align:center><form action="/healthnetapp/manager_list/">
+				<button type="submit" value="Manager List">Manager List</button>
+			</form></td><li>
+			<li><td style=text-align:center><form action="/healthnetapp/secretary_list/">
+				<button type="submit" value="Secretary List">Secretary List</button>
+			</form></td><li>
+			<li><li><td style=text-align:center><form action="/healthnetapp/admin_list/">
+				<button type="submit" value="Admin List">Admin List</button>
+			</form></td><li>
+			<li><td style=text-align:center><form action="/healthnetapp/pending_list/">
+				<button type="submit" value="Pending Appointments">Pending Appointments</button>
+			</form></td><li>
+		<td><form action="/healthnetapp/logout/"><button type="submit" value="Logout" class="btn btn-success"><i class="icon-signin icon-large"></i>&nbsp;Logout</button></form></td>
+		</table>
+	</li>
+		{% else %}
+	<li><table>
+			<td style=text-align:center><form action="/healthnetapp/update_patient/{{user.username}}">
+				<button type="submit" value="Update Info">Update Info</button>
+			</form></td>
+			<td style=text-align:center;><form action="/healthnetapp/calendar/">
+				<button type="submit" value="Calendar">Calendar</button>
+			</form></td>
+		<td style=text-align:center;><form action="/healthnetapp/doctor_list/">
+				<button type="submit" value="Doctor List">Doctor List</button>
+			</form></td>
+		<td style=text-align:center;><form action="/healthnetapp/nurse_list/">
+				<button type="submit" value="Nurse List">Nurse List</button>
+			</form></td>
+		</table>
+		</li>
+		{% endif %}
+	{% endif %}
+
+
+
+            </div><!--/.nav-collapse -->
+          </ul>
+			</div>
+			  </div>
+        </nav>
+      </div>
+      <!-- END MENU -->
+    </header>
+
+<body>
+<div class="container">
+      <div class="row">
+      <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+           <A href="edit.html" >Edit Profile</A>
+
+        <A href="edit.html" >Logout</A>
+       <br>
+<p class=" text-info">May 05,2014,03:00 pm </p>
+      </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{ ProfileInfo.firstname}} {{ ProfileInfo.lastname}}</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                  <dl>
+                    <dt>DEPARTMENT:</dt>
+                    <dd>Administrator</dd>
+                    <dt>HIRE DATE</dt>
+                    <dd>11/12/2013</dd>
+                    <dt>DATE OF BIRTH</dt>
+                       <dd>11/12/2013</dd>
+                    <dt>GENDER</dt>
+                    <dd>Male</dd>
+                  </dl>
+                </div>-->
+				  {% if type == "admin" %}
+
+
+		<table style="width:100%">
+		<tr>
+		<td><form action="/healthnetapp/register_doctor/">
+			<button class="btn btn-success" type="submit" value="Register Doctor">Register Doctor</button>
+		</form></td>
+		<td><form action="/healthnetapp/register_nurse/">
+			<button class="btn btn-success" type="submit" value="Register Nurse">Register Nurse</button>
+		</form></td>
+		<td><form action="/healthnetapp/register_manager/">
+			<button class="btn btn-success" type="submit" value="Register Manager">Register Manager</button>
+		</form></td>
+		<td><form action="/healthnetapp/register_secretary/">
+			<button class="btn btn-success" type="submit" value="Register Secretary">Register Secretary</button>
+		</form></td>
+		<td><form action="/healthnetapp/register_admin/">
+			<button class="btn btn-success" type="submit" value="Register Admin">Register Admin</button>
+		</form></td>
+		</tr>
+            <tr>
+		<td><form action="/healthnetapp/patient_list/">
+			<button class="btn btn-success" type="submit" value="Patient List">Patient List</button>
+		</form></td>
+		<td><form action="/healthnetapp/doctor_list/">
+			<button class="btn btn-success" type="submit" value="Doctor List">Doctor List</button>
+		</form></td>
+		<td><form action="/healthnetapp/nurse_list/">
+			<button class="btn btn-success" type="submit" value="Nurse List">Nurse List</button>
+		</form></td>
+		<td><form action="/healthnetapp/manager_list/">
+			<button class="btn btn-success" type="submit" value="Manager List">Manager List</button>
+		</form></td>
+		<td><form action="/healthnetapp/secretary_list/">
+			<button class="btn btn-success" type="submit" value="Secretary List">Secretary List</button>
+		</form></td>
+		<td><form action="/healthnetapp/admin_list/">
+			<button class="btn btn-success" type="submit" value="Admin List">Admin List</button>
+		</form></td>
+		</tr>
+		</table>
+	</div>
+                <div class=" col-md-9 col-lg-9 ">
+                  <table class="table table-user-information">
+                    <tbody>
+
+
+
+                      <tr>
+                        <td>Username:</td>
+                        <td>{{user.username}}</td>
+                      </tr>
+                      <tr>
+                        <td>First Name:</td>
+                        <td>{{ ProfileInfo.firstname}}</td>
+                      </tr>
+                      <tr>
+                        <td>Last Name: </td>
+                        <td>{{ ProfileInfo.lastname}}</td>
+                      </tr>
+
+                         <tr>
+                             <tr>
+                        <td>Birth Date:</td>
+                        <td>{{ ProfileInfo.birth}}</td>
+                      <tr>
+                        <td>Email</td>
+                        <td><{{ user.email }}</td>
+                      </tr>
+					  <tr>
+                        <td>Phone Number</td>
+                        <td>{{ProfileInfo.address}}</td>
+					  </tr>
+					  <tr>
+                        <td>Preferred Hospital: </td>
+                        <td>{{ProfileInfo.prefered}}</td>
+					   </tr>
+
+
+                    </tbody>
+                  </table>
+
+					{% elif type == "doctor" %}
+
+					<table class="table table-user-information">
+                    <tbody>
+
+
+
+                      <tr>
+                        <td>Username:</td>
+                        <td>{{user.username}}</td>
+                      </tr>
+                      <tr>
+                        <td>First Name:</td>
+                        <td>{{ ProfileInfo.firstname}}</td>
+                      </tr>
+                      <tr>
+                        <td>Last Name: </td>
+                        <td>{{ ProfileInfo.lastname}}</td>
+                      </tr>
+
+                         <tr>
+                             <tr>
+                        <td>Birth Date:</td>
+                        <td>{{ ProfileInfo.birth}}</td>
+                      <tr>
+                        <td>Email</td>
+                        <td><{{ user.email }}</td>
+                      </tr>
+					  <tr>
+                        <td>Phone Number</td>
+                        <td>{{ProfileInfo.address}}</td>
+					  </tr>
+					  <tr>
+                        <td>Address: </td>
+                        <td>{{ProfileInfo.address }}</td>
+					   </tr>
+					 <tr>
+                        <td>Profession: </td>
+                        <td>{{ProfileInfo.profession }}</td>
+					   </tr>
+					  <tr>
+                        <td>Degree: </td>
+                        <td>{{ProfileInfo.degree }}</td>
+					   </tr>
+					 <tr>
+                        <td>Preferred Hospital:</td>
+                        <td>{{ProfileInfo.prefered}}</td>
+					   </tr>
+
+
+
+                    </tbody>
+                  </table>
+
+	{% else %}
+
+					<table class="table table-user-information">
+                    <tbody>
+
+
+
+                      <tr>
+                        <td>Username:</td>
+                        <td>{{user.username}}</td>
+                      </tr>
+                      <tr>
+                        <td>First Name:</td>
+                        <td>{{ ProfileInfo.firstname}}</td>
+                      </tr>
+                      <tr>
+                        <td>Last Name: </td>
+                        <td>{{ ProfileInfo.lastname}}</td>
+                      </tr>
+
+                         <tr>
+                             <tr>
+                        <td>Birth Date:</td>
+                        <td>{{ ProfileInfo.birth}}</td>
+                      <tr>
+                        <td>Email</td>
+                        <td><{{ user.email }}</td>
+                      </tr>
+					  <tr>
+                        <td>Phone Number</td>
+                        <td>{{ProfileInfo.address}}</td>
+					  </tr>
+					  <tr>
+                        <td>Address: </td>
+                        <td>{{ProfileInfo.address }}</td>
+					   </tr>
+					 <tr>
+                        <td>Preferred Hospital:</td>
+                        <td>{{ProfileInfo.prefered}}</td>
+					   </tr>
+
+
+
+                    </tbody>
+                  </table>
+
+	{% endif %}
+
+					<table class="table table-user-information">
+                    <tbody>
+
+
+
+                      <tr>
+                        <td>Health Insurance Provider: </td>
+                        <td>{{MedicalInfo.provider}}</td>
+                      </tr>
+                      <tr>
+                        <td>Emergency Contact Phone: </td>
+                        <td> {{MedicalInfo.emergency}}</td>
+                      </tr>
+                      <tr>
+                        <td>Insurance #: </td>
+                        <td>{{MedicalInfo.insurance}}</td>
+                      </tr>
+
+                         <tr>
+                             <tr>
+                        <td>Medical Conditions: </td>
+                        <td>{{MedicalInfo.conditions}}</td>
+                      <tr>
+                        <td>Perscriptions: </td>
+                        <td>{{MedicalInfo.perscriptions}}</td>
+                      </tr>
+					  <tr>
+                        <td>Test Results: </td>
+                        <td>{{MedicalInfo.results}}</td>
+					  </tr>
+
+
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+            </div>
+                 <div class="panel-footer">
+                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                        <span class="pull-right">
+                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                        </span>
+                    </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+	</div>
+	</div>
+		</div>
+	</div>
+	</div>
+	</body>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends  "base.html" %}
+{% block content %}
+   <!-- BEGIN MENU -->
+ <header class="header dark-bg">
+      <!-- BEGIN MENU -->
+      <div class="menu_area">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <!-- LOGO -->
+              <!-- TEXT BASED LOGO -->
+              <a class="navbar-brand" href="index.html"><i class="fa fa-heartbeat"></i> <span>MIDHILL HOSPITAL</span></a>
+              <!-- IMG BASED LOGO  -->
+              <!--  <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo"></a>   -->
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
+				  <table class="centered" style="width:100%">
+		<td id="home"><form action="/healthnetapp/user"><button class="btn btn-primary" type="submit" value="User Homepage"> User Homepage</button>
+		</form></td>
+	</table>
+
+				  </ul>
+</div>
+		  </div>
+		</nav>
+	  </div>
+    </header>
+    <!--=========== END HEADER SECTION ================-->
+<body>
+<div id="main">
+<div class="centered">
+<table style="width: 100%;">
+<td  style=color:blue;font-size:48px;border=1 px solid black;>HealthNet</td>
+{% if user.is_authenticated %}
+	<td id="home"><form action="/healthnetapp/user">
+		<button type="submit" value="User Homepage">User Homepage</button>
+	</form></td>
+{% else %}
+	<td id="page" style="text-align:center;"><form action="/healthnetapp/">
+		<button type="submit" value="Homepage"> Homepage</button>
+	</form></td>
+{% endif %}
+</table>
+</div>
+<div id="content">
+{% for hos in hospitals %}
+	{{hos.name}}</br>
+	Address: {{hos.address}}</br>
+	Phone #: {{hos.phone}}</br>
+	Email: {{hos.email}}</br>
+	Hours: {{hos.hours}}</br>
+	<td style=text-align:center;><form action="/healthnetapp/admit_b/{{hos.name}}/{{patient}}">
+		<button type="submit" value="Admit Patient to hospital">Admit to Hospital</button>
+	</form></td></br></br>
+{% endfor %}
+</body>
+</div>
+</div>
+{% endblock %}

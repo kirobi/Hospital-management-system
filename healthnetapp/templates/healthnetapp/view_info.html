@@ -1,0 +1,64 @@
+{% extends  "base.html" %}
+{% block content %}
+   <!-- BEGIN MENU -->
+ <header class="header dark-bg">
+      <!-- BEGIN MENU -->
+      <div class="menu_area">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <!-- LOGO -->
+              <!-- TEXT BASED LOGO -->
+              <a class="navbar-brand" href="index.html"><i class="fa fa-heartbeat"></i> <span>MIDHILL HOSPITAL</span></a>
+              <!-- IMG BASED LOGO  -->
+              <!--  <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo"></a>   -->
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
+				  <table class="centered" style="width:100%">
+		<td id="home"><form action="/healthnetapp/user"><button class="btn btn-primary" type="submit" value="User Homepage"> User Homepage</button>
+		</form></td>
+	</table>
+
+				  </ul>
+</div>
+		  </div>
+		</nav>
+	  </div>
+    </header>
+    <!--=========== END HEADER SECTION ================-->
+	<body>
+	<div id="main">
+	<div class="centered">
+
+
+<h2>Username: {{ ProfileInfo.username }}</h2>
+<h2>First Name: {{ ProfileInfo.firstname }}</h2>
+<h2>Last Name: {{ ProfileInfo.lastname }}</h2>
+<h2>Birth Date: {{ ProfileInfo.birth }}</h2>
+<h2>Telephone Number: {{ProfileInfo.phone }}</h2>
+<h2>Email: {{ ProfileInfo.email }}</h2>
+<h2>Address: {{ProfileInfo.address }}</h2>
+<h2>Preferred Hospital: {{ProfileInfo.prefered }}</h2></br>
+
+{% if medical %}
+	<h2>Medical Information:</h2>
+	<h2>Health Insurance Provider: {{MedicalInfo.provider}}</h2>
+	<h2>Emergency Contact Phone: {{MedicalInfo.emergency}}</h2>
+	<h2>Insurance #: {{MedicalInfo.insurance}}</h2>
+	<h2>Medical Conditions: {{MedicalInfo.conditions}}</h2>
+	<h2>perscriptions: {{MedicalInfo.perscriptions}}</h2>
+	<h2>Current Hospital: {{MedicalInfo.currenthospital}}</h2>
+{% endif %}
+	</div>
+	</div>
+</body>
+{% endblock %}

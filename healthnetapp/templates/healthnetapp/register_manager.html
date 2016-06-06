@@ -1,0 +1,67 @@
+{% extends  "base.html" %}
+{% block content %}
+
+{% if user.is_superuser %}
+
+   <!-- BEGIN MENU -->
+ <header class="header dark-bg">
+      <!-- BEGIN MENU -->
+      <div class="menu_area">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <!-- LOGO -->
+              <!-- TEXT BASED LOGO -->
+              <a class="navbar-brand" href="index.html"><i class="fa fa-heartbeat"></i> <span>MIDHILL HOSPITAL</span></a>
+              <!-- IMG BASED LOGO  -->
+              <!--  <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo"></a>   -->
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
+				  <table class="centered" style="width:100%">
+		<td id="home"><form action="/healthnetapp/user"><button class="btn btn-primary" type="submit" value="User Homepage"> User Homepage</button>
+		</form></td>
+	</table>
+
+				  </ul>
+</div>
+		  </div>
+		</nav>
+	  </div>
+    </header>
+    <!--=========== END HEADER SECTION ================-->
+
+
+		<body>
+			<h1 style="text-align:center;color:blue;">Register A Manager</h1>
+
+
+			<form id="user_form" method="post" action="/healthnetapp/register_manager/"
+					enctype="multipart/form-data">
+
+				{% csrf_token %}
+
+				{{ user_form.as_p }}
+				{{ profile_form.as_p }}
+				{{ medical_form.as_p}}
+
+				<button type="submit" name="submit" value="Register">Register</button>
+			</form>
+			<br/>
+			<form action="/healthnetapp/user">
+				<button type="submit" value="Cancel registration">Cancel Registration</button>
+			</form>
+			</div>
+			</div>
+		</body>
+	</html>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,196 @@
+{% extends  "base.html" %}
+{% block content %}
+      <!-- BEGIN MENU -->
+ <header class="header dark-bg">
+      <!-- BEGIN MENU -->
+      <div class="menu_area">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <!-- LOGO -->
+              <!-- TEXT BASED LOGO -->
+              <a class="navbar-brand" href="index.html"><i class="fa fa-heartbeat"></i> <span>&nbsp; MIDHILL HOSPITAL</span></a>
+              <!-- IMG BASED LOGO  -->
+              <!--  <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo"></a>   -->
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
+				  {% if user.is_authenticated %}
+		{% if type == "admin" %}
+<div class="btn-group">
+
+<li>	<table style="float:right">
+                <td style=text-align:center><form action="/"><button type="submit" value="Home">&nbsp;Home</button></form></td>
+                <td style=text-align:center><form action="/healthnetapp/logs_list/"><button type="submit" value="View Logs">View Logs</button></form></td>
+                <td style=text-align:center><form action="/healthnetapp/statistics/"><button type="submit" value="statistics">Statistics</button></form></td>
+                <td style=text-align:center><form action="/admin/"><button type="submit" value="Admin Page">Admin Page</button></form></td>
+                <td style=text-align:center><form action="/healthnetapp/pending_list/"><button type="submit" value="Pending Appointments">Pending Appts.</button></form></td>
+		        <td><form action="/healthnetapp/logout/"><button type="submit" value="Logout" class="btn btn-success"><i class="icon-signin icon-large"></i>&nbsp;Logout</button></form></td>
+</table>
+					{% elif type == "doctor" %}
+	<table>
+	<td>
+				<td style=text-align:center><form action="/"><button type="submit" value="Home">&nbsp;Home</button></form></td>
+				 <td style=text-align:center><form action="/healthnetapp/update_doctor/{{user.username}}"><button type="submit" value="Update Info">Update Info</button></form></td>
+				<td style=text-align:center;><form action="/healthnetapp/calendar/"><button type="submit" value="Calendar">Calendar</button></form></td>
+				<td style=text-align:center;><form action="/healthnetapp/patient_list/"><button type="submit" value="Patient List">Patient List</button></form></td>
+				<td style=text-align:center;><form action="/healthnetapp/doctor_list/"><button type="submit" value="Doctor List">Doctor List</button></form></td>
+				<td style=text-align:center;><form action="/healthnetapp/nurse_list/"><button type="submit" value="Nurse List">Nurse List</button></form></td>
+			 	<td style=text-align:center><form action="/healthnetapp/manager_list/"><button type="submit" value="Manager List">Manager List</button></form></td><
+				<td style=text-align:center><form action="/healthnetapp/secretary_list/"><button type="submit" value="Secretary List">Secretary List</button></form></td>
+				<td style=text-align:center><form action="/healthnetapp/admin_list/"><button type="submit" value="Admin List">Admin List</button></form></td>
+		        <td><form action="/healthnetapp/logout/"><button type="submit" value="Logout" class="btn btn-success"><i class="icon-signin icon-large"></i>&nbsp;Logout</button></form></td>
+</table>
+	</li>
+
+				  {% elif type == "nurse" %}
+	<li><table>
+				<td style=text-align:center><form action="/"><button type="submit" value="Home">&nbsp;Home</button></form></td>
+				<td style=text-align:center><form action="/healthnetapp/update_nurse/{{user.username}}"><button type="submit" value="Update Info">Update Info</button></form></td>
+				<td style=text-align:center;><form action="/healthnetapp/calendar/"><button type="submit" value="Calendar">Calendar</button></form></td><
+				<td style=text-align:center;><form action="/healthnetapp/patient_list/"><button type="submit" value="Patient List">Patient List</button></form></td>
+				<td style=text-align:center;><form action="/healthnetapp/doctor_list/"><button type="submit" value="Doctor List">Doctor List</button></form></td>
+				<td style=text-align:center;><form action="/healthnetapp/nurse_list/"><button type="submit" value="Nurse List">Nurse List</button></form></td>
+				<td style=text-align:center><form action="/healthnetapp/manager_list/"><button type="submit" value="Manager List">Manager List</button></form></td>
+				<td style=text-align:center><form action="/healthnetapp/secretary_list/"><button type="submit" value="Secretary List">Secretary List</button></form></td>
+				<td style=text-align:center><form action="/healthnetapp/admin_list/"><button type="submit" value="Admin List">Admin List</button></form></td>
+		        <td><form action="/healthnetapp/logout/"><button type="submit" value="Logout" class="btn btn-success"><i class="icon-signin icon-large"></i>&nbsp;Logout</button></form><</td>
+</table>
+		</li>
+				  {% elif type == "manager" %}
+		<li><table>
+				<td style=text-align:center><form action="/"><button type="submit" value="Home">&nbsp;Home</button></form></td>
+			<td style=text-align:center><form action="/healthnetapp/update_manager/{{user.username}}"><button type="submit" value="Update Info">Update Info</button></form></td>
+			<td style=text-align:center;><form action="/healthnetapp/calendar/"><button type="submit" value="Calendar">Calendar</button></form></td><li>
+			<td style=text-align:center;><form action="/healthnetapp/patient_list/"><button type="submit" value="Patient List">Patient List</button></form></td>
+			<td style=text-align:center;><form action="/healthnetapp/doctor_list/"><button type="submit" value="Doctor List">Doctor List</button></form></td>
+			<td style=text-align:center;><form action="/healthnetapp/nurse_list/"><button type="submit" value="Nurse List">Nurse List</button></form></td>
+			<td style=text-align:center><form action="/healthnetapp/manager_list/"><button type="submit" value="Manager List">Manager</button></form></td><li>
+			<td style=text-align:center><form action="/healthnetapp/secretary_list/">
+				<button type="submit" value="Secretary List">Secretary List</button>
+			</form></td>
+			<td style=text-align:center><form action="/healthnetapp/admin_list/">
+				<button type="submit" value="Admin List">Admin List</button>
+			</form></td>
+			<td style=text-align:center><form action="/healthnetapp/pending_list/">
+				<button type="submit" value="Pending Appointments">Pending Appointments</button>
+			</form></td>
+			<td><form action="/healthnetapp/logout/"><button type="submit" value="Logout" class="btn btn-success"><i class="icon-signin icon-large"></i>&nbsp;Logout</button></form></td>
+</table>
+	</li>
+		{% elif type == "secretary" %}
+	<li><table>
+				  <li><td style=text-align:center><form action="/"><button type="submit" value="Home">&nbsp;Home</button></form></td></li>
+			<li><td style=text-align:center><form action="/healthnetapp/update_secretary/{{user.username}}">
+				<button type="submit" value="Update Info">Update Info</button>
+			</form></td><li>
+			<li><td style=text-align:center;><form action="/healthnetapp/calendar/">
+				<button type="submit" value="Calendar">Calendar</button>
+			</form></td><li>
+			<li><td style=text-align:center;><form action="/healthnetapp/patient_list/">
+				<button type="submit" value="Patient List">Patient List</button>
+			</form></td><li>
+			<li><td style=text-align:center;><form action="/healthnetapp/doctor_list/">
+				<button type="submit" value="Doctor List">Doctor List</button>
+			</form></td><li>
+			<li><td style=text-align:center;><form action="/healthnetapp/nurse_list/">
+				<button type="submit" value="Nurse List">Nurse List</button>
+			</form></td><li>
+			<li><td style=text-align:center><form action="/healthnetapp/manager_list/">
+				<button type="submit" value="Manager List">Manager List</button>
+			</form></td><li>
+			<li><td style=text-align:center><form action="/healthnetapp/secretary_list/">
+				<button type="submit" value="Secretary List">Secretary List</button>
+			</form></td><li>
+			<li><li><td style=text-align:center><form action="/healthnetapp/admin_list/">
+				<button type="submit" value="Admin List">Admin List</button>
+			</form></td><li>
+			<li><td style=text-align:center><form action="/healthnetapp/pending_list/">
+				<button type="submit" value="Pending Appointments">Pending Appointments</button>
+			</form></td><li>
+		<td><form action="/healthnetapp/logout/"><button type="submit" value="Logout" class="btn btn-success"><i class="icon-signin icon-large"></i>&nbsp;Logout</button></form></td>
+		</table>
+	</li>
+		{% else
+	<li><table>
+			<td style=text-align:center><form action="/healthnetapp/update_patient/{{user.username}}">
+				<button type="submit" value="Update Info">Update Info</button>
+			</form></td>
+			<td style=text-align:center;><form action="/healthnetapp/calendar/">
+				<button type="submit" value="Calendar">Calendar</button>
+			</form></td>
+		<td style=text-align:center;><form action="/healthnetapp/doctor_list/">
+				<button type="submit" value="Doctor List">Doctor List</button>
+			</form></td>
+		<td style=text-align:center;><form action="/healthnetapp/nurse_list/">
+				<button type="submit" value="Nurse List">Nurse List</button>
+			</form></td>
+		</table>
+		</li>
+		{% endif %}
+	{% endif %}
+<div class="btn-group">
+<table >
+		<td ><form action="/healthnetapp/user">
+			<button type="submit" value="User Homepage">User Homepage</button>
+		</form></td>
+	</table>
+</div>
+            </div><!--/.nav-collapse -->
+          </ul>
+			</div>
+			  </div>
+        </nav>
+      </div>
+      <!-- END MENU -->
+    </header>
+
+        <title>Calendar</title>
+		<style>
+		body{ width: 100%; height: 100vh; background: linear-gradient(#A0A0A0,#E0E0E0);}
+		#main{ padding-top: 5%; width: 80%; margin: 0 auto;}
+		#home{position: absolute; width: 150px; right: 10%; top:3%;}
+		#content{ padding-left: 20%; }
+		#id{ margin-left: 50px;}
+		.centered{ text-align: center; }
+		a:link,a:visited {
+			text-align:center;
+			font-family:bold;
+			color: blue;
+			text-decoration:none;
+		}
+		#menu{position: absolute; width: 25%; height: 30%; top: 20%; right: 3%; background-color:#ADD8E6; border: 3px solid black;
+			border-top-right-radius: 25px;  border-top-left-radius: 25px; border-bottom-right-radius: 25px; border-bottom-left-radius: 25px;}
+
+
+		</style>
+    </head>
+<body>
+<div id="main">
+<div class="centered">
+<table style="width: 100%;">
+<td style=color:blue;font-size:48px;border=1 px solid black;>HealthNet</td>
+<td id="home"><form action="/healthnetapp/user">
+		<p><button type="submit" value="User Homepage">User Homepage</button></p>
+</form></td>
+</table>
+</div>
+<div id="content">
+<h2>-/-/{{ year }}</h2>
+{% for month in months %}
+	<td><form action="/healthnetapp/month/{{ year }}/{{month.n}}/">
+		<input type="submit" value="{{ month.name }}">
+	</form></td>
+{% endfor %}
+</div>
+</div>
+</body>
+{% endblock %}
